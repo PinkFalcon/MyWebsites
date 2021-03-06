@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedback</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="feed.js">
+  <link rel="icon" href="favicon.ico">
+</head>
+
+<script>
+    function Clear() {
+    document.getElementById("fname").value = "";
+    document.getElementById("mname").value = "";
+    document.getElementById("lname").value = "";
+    document.querySelector('input[name="gender"]:checked').checked = false;
+    document.getElementById("sugges").value = "";
+}
+function input() {
+    debugger;
+   // alert("Hello!");
+    var fname = document.getElementById("fname").value;
+    var midmame = document.getElementById("mname").value;
+    var lastname = document.getElementById("lname").value;
+   var Gender = document.querySelector('input[name="gender"]:checked').value;
+
+    //var feedback = document.getElementById("mytest").value;
+    var feedback = document.getElementById("TopFeedback1").innerHTML;
+    var suggestion = document.getElementById("sugges").value;
+    var d = new Date();
+    //alert(fname.length);
+    if (fname == "" ) {
+        alert("Please inpur your first name. ");
+    }
+    else if (lastname == "")
+    {
+        alert("Please inpur your last name. ");
+    }
+    else if (suggestion == "") {
+        alert("Please inpur your suggestion. ");
+    }
+    else if (fname.length > 40 || midmame.length > 40 || lastname.length > 40)
+    {
+        alert("Please inpur your name in 40 char ");
+    }
+    else{
+        if (midmame.trim() == "")
+            name = Gender + " " + fname.trim() + " " + lastname.trim();
+        else {
+            name = Gender + " " + fname.trim() + " " + midmame.trim() + " " + lastname.trim()
+        }
+        feedback +="<div  class='feed' id='f'>";
+        feedback += "<br>" + "Name: " + name + "<br>" + "Suggestion: " + suggestion + "<br>" + d + "<br>";
+        feedback += "</div>";
+        //document.getElementById("mytest").value = feedback;
+        document.getElementById("TopFeedback1").innerHTML = feedback;
+        //document.getElementById("f").style.marginRight="20px";
+
+    }
+
+    var objDiv = document.getElementById("TopFeedback1");
+    objDiv.scrollTop = objDiv.scrollHeight;
+    Clear();
+
+}
+function validName() {
+    //document.getElementsByClassName("s").style.display = "none";
+    var a = document.getElementById("fname").value;
+    if(a.length>0)
+        document.getElementById("s").style.display = "none";
+    else
+        document.getElementById("s").style.display = "inline-block";
+}
+</script>
+
+<body>
+
+
+   <center><h1 style="color: #000080;"><strong>Feedback</strong></h1></center>
+           <div>
+            <section style="float:left;width:30%;padding-top:50px;padding-left:20px">
+                <form action="index.html"  onsubmit="return false">
+                   <div class="Feedback">
+                    <div class="inputBox MyLabel" style="display:flex;margin-top:12px;">
+                       <div style="width:200px;"><label for="fname" style="color: #000080; font-size: 20px;">First name</label><label id="s" class="s">*</label></div>
+                       <div style="width:200px;" > <input type="text" id="fname" name="fname" onkeypress="validName()" onkeyup="validName()" required></div>
+
+                    </div>
+                    <div class="inputBox MyLabel" style="display:flex;margin-top:12px;">
+                        <div style="width:200px;"><label for="mname" style="color:  #000080; font-size: 20px;">Middle name</label></div>
+                        <div style="width:200px;"> <input type="text" id="mname" name="mname"></div>
+                    </div>
+                    <div class="inputBox MyLabel" style="display:flex;margin-top:12px; ">
+                        <div style="width:200px;"><label for="lname" style="color: #000080; font-size: 20px;">Last name</label><label id="s" class="s">*</label></div>
+                        <div style="width:200px;"> <input type="text" id="lname" name="lname" required></div>
+                    </div>
+                    <div class="inputBox MyLabel" style="display:flex;margin-top:12px;">
+                        <div style="width:200px;"><label for="sugg" style="color:  #000080; font-size: 20px;">Suggestion</label><label id="s" class="s">*</label></div>
+                        <div style="width:200px;"> <textarea  id="sugges" name="sugg" class="mysugg" required></textarea></div>
+                    </div>
+                    <div class="MyLabel" style="display:flex;margin-top:15px;">
+                        <div style="width:200px;"><label for="fname" style="color:  #000080; font-size: 20px;">Gender</label><label id="s" class="s">*</label></div>
+                        <div style="width:200px;">
+                            <input type="radio" id="male" name="gender" value="Mr" required >
+                            <label for="male" style="color:  #000080; font-size: 20px;">Male</label>
+                            <input type="radio" id="female" name="gender" value="Ms" required>
+                            <label for="female" style="color: #000080; font-size: 20px;" >Female</label>
+                        </div>
+                    </div>
+                    <div style="margin-left:200px;margin-top:30px;">
+
+                        <input type="submit" value="Submit" class="Button" onclick="input()">
+                        <input type="submit" value="Clear" class="Button"  onclick="Clear()">
+                    </div>
+                   </div>
+                </form>
+
+            </section>
+            <section style="float:right;width:60%">
+                <div class="Topfeedback" id="TopFeedback1">
+                </div>
+            </section>
+
+            <br><br> <br><br> <br><br>   <br><br> <br><br> <br><br> <br><br> <br><br> <br><br>
+                <footer>
+                    Copyright@2021 <br>Developed by :Nidhi Sharma
+                </footer>
+                <script src="./feed.js"></script>
+</body>
+</html>
